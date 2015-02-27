@@ -1,0 +1,34 @@
+name: Tyrant
+main: io.github.hedgehog1029.Tyrant.Tyrant
+version: 1.2.1
+commands:
+  msg:
+    description: Message a player.
+    usage: /msg <player> <message>
+    permission: tyrant.player.msg
+    permission-message: You don't have permission!
+  tell:
+    description: Message a player.
+    usage: /msg <player> <message>
+    permission: tyrant.player.msg
+    permission-message: You don't have permission!
+  spy:
+    description: Spy on private messages.
+    usage: /spy
+    permission: tyrant.admin.spy
+    permission-message: You don't have permission!
+  inv:
+    description: Open another player's inventory.
+    usage: /inv <player>
+    permission: tyrant.admin.inv
+    permission-message: You don't have permission!
+  hide:
+    description: Hide from all other players!
+    usage: /hide
+    permission: tyrant.admin.hide
+    permission-message: You don't have permission!
+  update:
+    description: Change the current UpdateStory.
+    usage: /update
+    permission: tyrant.admin.update.announce
+    permission-message: You don't have permission!
