@@ -36,7 +36,7 @@ public class Moderator {
             IconMenu playerMenu = this.getPlayerMenu(event.getName());
 
             Moderator.addModTools(playerMenu, Bukkit.getPlayer(event.getName()));
-            event.getPlayer().sendMessage("§6[Tyrant] Moderating " + event.getName() + ".");
+
             Bukkit.getScheduler().scheduleSyncDelayedTask(JavaPlugin.getPlugin(Tyrant.class), () -> {
                 playerMenu.open(event.getPlayer(), Bukkit.getPlayer(event.getName()), "");
             }, 3);
@@ -77,27 +77,46 @@ public class Moderator {
 
         iconMenu.setOption(0, icon, "Managing " + target.getName());
 
-        if (Moderator.isPlayerMuted(target))
-            iconMenu.setOption(3, new ItemStack(Material.STAINED_CLAY, 1, (short) 14), "Unmute Player", "§8Unmute the specified player.");
-        else
-            iconMenu.setOption(3, new ItemStack(Material.STAINED_CLAY, 1, (short) 13), "Mute Player", "§8Mute the specified player.");
+        iconMenu.setOption(2, new ItemStack(Material.ENDER_PEARL), "Teleport To Player", "§8Teleport to the player.");
+        iconMenu.setOption(3, new ItemStack(Material.EYE_OF_ENDER), "Bring Player", "§8Teleport the player to you.");
 
-        iconMenu.setOption(4, new ItemStack(Material.STAINED_CLAY, 1, (short) 4), "Kick Player", "§8Kick the specified player.");
+        if (Moderator.isPlayerMuted(target))
+            iconMenu.setOption(4, new ItemStack(Material.STAINED_CLAY, 1, (short) 14), "Unmute Player", "§8Unmute the specified player.");
+        else
+            iconMenu.setOption(4, new ItemStack(Material.STAINED_CLAY, 1, (short) 13), "Mute Player", "§8Mute the specified player.");
+
+        iconMenu.setOption(5, new ItemStack(Material.STAINED_CLAY, 1, (short) 4), "Kick Player", "§8Kick the specified player.");
 
         if (Moderator.isPlayerBanned(target))
-            iconMenu.setOption(5, new ItemStack(Material.STAINED_CLAY, 1, (short) 14), "Pardon Player", "§8Pardon the specified player.");
+            iconMenu.setOption(6, new ItemStack(Material.STAINED_CLAY, 1, (short) 14), "Pardon Player", "§8Pardon the specified player.");
         else
-            iconMenu.setOption(5, new ItemStack(Material.STAINED_CLAY, 1, (short) 13), "Ban Player", "§8Ban the specified player.");
+            iconMenu.setOption(6, new ItemStack(Material.STAINED_CLAY, 1, (short) 13), "Ban Player", "§8Ban the specified player.");
 
         iconMenu.setOption(8, new ItemStack(Material.BOOK_AND_QUILL), "Exit");
     }
 
     private IconMenu getPlayerMenu(String target) {
-        return new IconMenu("Moderation Tools: " + target, 9, e -> {
+        String title = "Mod Tools: " + target;
+
+        if (title.length() > 32) {
+            title = "MT: " + target;
+        }
+
+        return new IconMenu(title, 9, e -> {
             if (e.getPosition() == 0)
                 return;
 
+            if (e.getPosition() == 2) {
+                e.getPlayer().teleport(e.getTarget());
+
+                e.getPlayer().sendMessage("§6[Tyrant] Teleported to " + e.getTarget().getName());
+            }
+
             if (e.getPosition() == 3) {
+                e.getTarget().teleport(e.getPlayer());
+            }
+
+            if (e.getPosition() == 4) {
                 if (Moderator.isPlayerMuted(e.getTarget())) {
                     Moderator.unmute(e.getTarget());
 
@@ -109,13 +128,13 @@ public class Moderator {
                 }
 
                 e.setWillClose(true);
-            } else if (e.getPosition() == 4) {
+            } else if (e.getPosition() == 5) {
                 Moderator.kick(e.getTarget());
 
                 e.getPlayer().sendMessage("§6[Tyrant] Kicked " + e.getTarget().getName());
 
                 e.setWillClose(true);
-            } else if (e.getPosition() == 5) {
+            } else if (e.getPosition() == 6) {
                 if (Moderator.isPlayerBanned(e.getTarget())) {
                     Moderator.unban(e.getTarget());
 
