@@ -4,9 +4,7 @@ import io.github.hedgehog1029.Tyrant.Tyrant;
 import io.github.hedgehog1029.Tyrant.util.IconMenu;
 import io.github.hedgehog1029.frame.loader.Command;
 import io.github.hedgehog1029.frame.loader.Sender;
-import org.bukkit.Bukkit;
-import org.bukkit.DyeColor;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -48,6 +46,11 @@ public class Moderator {
         this.populate(menu);
 
         menu.open(psender, null, "");
+    }
+
+    @Command(aliases = "unban", desc = "Unban a player.", usage = "/unban <player>", permission = "tyrant.admin.unban", helpTopic = "Tyrant")
+    public void unban(@Sender CommandSender sender, OfflinePlayer p) {
+        Moderator.unban(p.getUniqueId());
     }
 
     public void populate(IconMenu modMenu) {
@@ -187,6 +190,10 @@ public class Moderator {
     }
 
     public static void unban(Player p) {
-        bannedPlayers.remove(p.getUniqueId());
+        Moderator.unban(p.getUniqueId());
+    }
+
+    public static void unban(UUID uuid) {
+        bannedPlayers.remove(uuid);
     }
 }

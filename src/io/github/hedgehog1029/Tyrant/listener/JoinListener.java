@@ -15,6 +15,7 @@ public class JoinListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent e) {
 
         if (Moderator.isPlayerBanned(e.getPlayer())) {
+            e.setJoinMessage("");
             e.getPlayer().kickPlayer("You are banned!");
             return;
         }
@@ -31,6 +32,10 @@ public class JoinListener implements Listener {
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent e) {
+        if (Moderator.isPlayerBanned(e.getPlayer())) {
+            e.setQuitMessage("");
+        }
+
         Hide.removePlayer(e.getPlayer());
     }
 }
