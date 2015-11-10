@@ -1,6 +1,8 @@
 package io.github.hedgehog1029.Tyrant.command;
 
 import io.github.hedgehog1029.frame.loader.Command;
+import io.github.hedgehog1029.frame.loader.HelpTopic;
+import io.github.hedgehog1029.frame.loader.Permission;
 import io.github.hedgehog1029.frame.loader.Sender;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
@@ -16,7 +18,9 @@ public class UpdateStory {
     private static HashSet<UUID> updaters = new HashSet<>();
     private static ArrayList<String> lines = new ArrayList<>();
 
-    @Command(aliases = "update", desc = "Change the current UpdateStory.", helpTopic = "Tyrant", usage = "/update", permission = "tyrant.admin.updatestory")
+    @Command(aliases = "update", desc = "Change the current UpdateStory.", usage = "/update")
+    @Permission("tyrant.admin.updatestory")
+    @HelpTopic("Tyrant")
     public void updateStory(@Sender CommandSender sender) {
         if (!(sender instanceof Player))
             return;

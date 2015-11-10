@@ -1,12 +1,16 @@
 package io.github.hedgehog1029.Tyrant.command;
 
 import io.github.hedgehog1029.frame.loader.Command;
+import io.github.hedgehog1029.frame.loader.HelpTopic;
+import io.github.hedgehog1029.frame.loader.Permission;
 import io.github.hedgehog1029.frame.loader.Sender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
 public class InventoryViewer {
-    @Command(aliases = {"inv", "viewinv"}, desc = "View the inventory of <target>.", usage = "/viewinv <Player>", permission = "tyrant.admin.viewinv", helpTopic = "Tyrant")
+    @Command(aliases = {"inv", "viewinv"}, desc = "View the inventory of <target>.", usage = "/viewinv <Player>")
+    @Permission("tyrant.admin.viewinv")
+    @HelpTopic("Tyrant")
     public void viewInventory(@Sender Player p, Player target) {
         Inventory i = target.getInventory();
 

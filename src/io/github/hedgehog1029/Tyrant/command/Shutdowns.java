@@ -2,6 +2,8 @@ package io.github.hedgehog1029.Tyrant.command;
 
 import io.github.hedgehog1029.Tyrant.Tyrant;
 import io.github.hedgehog1029.frame.loader.Command;
+import io.github.hedgehog1029.frame.loader.HelpTopic;
+import io.github.hedgehog1029.frame.loader.Permission;
 import io.github.hedgehog1029.frame.loader.Sender;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
@@ -12,7 +14,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Shutdowns {
 
-    @Command(aliases = {"shutdown", "stop"}, desc = "Shutdown the server.", permission = "tyrant.op.shutdown", usage = "/shutdown <seconds>", helpTopic = "Tyrant")
+    @Command(aliases = {"shutdown", "stop"}, desc = "Shutdown the server.", usage = "/shutdown <seconds>")
+    @Permission("tyrant.op.shutdown")
+    @HelpTopic("Tyrant")
     public void shutdown(@Sender CommandSender sender, int seconds) {
         Bukkit.getServer().broadcastMessage("§e== §6ATTENTION: Server will be shutting down in " + seconds + " seconds. §e==");
 

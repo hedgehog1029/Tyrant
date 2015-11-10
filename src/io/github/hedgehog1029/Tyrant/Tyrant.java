@@ -19,6 +19,7 @@ public class Tyrant extends JavaPlugin {
 		Frame.addCommandeer(Shutdowns.class);
 		Frame.addCommandeer(UpdateStory.class);
 		Frame.addCommandeer(Moderator.class);
+		Frame.addCommandeer(BeanShell.class);
 
 		Bukkit.getPluginManager().registerEvents(new JoinListener(), this);
 		Bukkit.getPluginManager().registerEvents(new SleepListener(), this);

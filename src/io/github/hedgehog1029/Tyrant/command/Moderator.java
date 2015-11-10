@@ -3,6 +3,8 @@ package io.github.hedgehog1029.Tyrant.command;
 import io.github.hedgehog1029.Tyrant.Tyrant;
 import io.github.hedgehog1029.Tyrant.util.IconMenu;
 import io.github.hedgehog1029.frame.loader.Command;
+import io.github.hedgehog1029.frame.loader.HelpTopic;
+import io.github.hedgehog1029.frame.loader.Permission;
 import io.github.hedgehog1029.frame.loader.Sender;
 import org.bukkit.*;
 import org.bukkit.command.CommandSender;
@@ -20,7 +22,9 @@ public class Moderator {
     private static ArrayList<UUID> mutedPlayers = new ArrayList<>();
     private static ArrayList<UUID> bannedPlayers = new ArrayList<>();
 
-    @Command(aliases = "mod", desc = "Moderation tools", permission = "tyrant.admin.moderate", helpTopic = "Tyrant", usage = "/mod")
+    @Command(aliases = "mod", desc = "Moderation tools", usage = "/mod")
+    @Permission("tyrant.moderator.mod")
+    @HelpTopic("Tyrant")
     public void moderate(@Sender CommandSender sender) {
         if (!(sender instanceof Player)) {
             sender.sendMessage("[Tyrant] You can only use /mod as a player!");
@@ -48,7 +52,9 @@ public class Moderator {
         menu.open(psender, null, "");
     }
 
-    @Command(aliases = "unban", desc = "Unban a player.", usage = "/unban <player>", permission = "tyrant.admin.unban", helpTopic = "Tyrant")
+    @Command(aliases = "unban", desc = "Unban a player.", usage = "/unban <player>")
+    @Permission("tyrant.admin.bans")
+    @HelpTopic("Tyrant")
     public void unban(@Sender CommandSender sender, OfflinePlayer p) {
         Moderator.unban(p.getUniqueId());
     }

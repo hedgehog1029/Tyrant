@@ -1,6 +1,8 @@
 package io.github.hedgehog1029.Tyrant.command;
 
 import io.github.hedgehog1029.frame.loader.Command;
+import io.github.hedgehog1029.frame.loader.HelpTopic;
+import io.github.hedgehog1029.frame.loader.Permission;
 import io.github.hedgehog1029.frame.loader.Sender;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -13,7 +15,9 @@ public class Hide {
 
     private static ArrayList<UUID> hiders = new ArrayList<>();
 
-    @Command(aliases = "hide", desc = "Hide yourself!", permission = "tyrant.admin.hide", helpTopic = "Tyrant")
+    @Command(aliases = "hide", desc = "Hide yourself!", usage = "/hide")
+    @Permission("tyrant.admin.hide")
+    @HelpTopic("Tyrant")
     public void hide(@Sender CommandSender sender) {
         if (!(sender instanceof Player))
             return;
