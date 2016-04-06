@@ -2,10 +2,10 @@ package io.github.hedgehog1029.Tyrant.command;
 
 import io.github.hedgehog1029.Tyrant.Tyrant;
 import io.github.hedgehog1029.Tyrant.util.IconMenu;
-import io.github.hedgehog1029.frame.loader.Command;
-import io.github.hedgehog1029.frame.loader.HelpTopic;
-import io.github.hedgehog1029.frame.loader.Permission;
-import io.github.hedgehog1029.frame.loader.Sender;
+import io.github.hedgehog1029.frame.annotations.Command;
+import io.github.hedgehog1029.frame.annotations.HelpTopic;
+import io.github.hedgehog1029.frame.annotations.Permission;
+import io.github.hedgehog1029.frame.annotations.Sender;
 import org.bukkit.*;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -14,6 +14,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -35,19 +36,17 @@ public class Moderator {
 
         psender.sendMessage("§6[Tyrant] Opened mod menu.");
         IconMenu menu = new IconMenu("Moderation Tools", 54, event -> {
-            IconMenu playerMenu = this.getPlayerMenu(event.getName());
+	        IconMenu playerMenu = this.getPlayerMenu(event.getName());
 
-            Moderator.addModTools(playerMenu, Bukkit.getPlayer(event.getName()));
+	        Moderator.addModTools(playerMenu, Bukkit.getPlayer(event.getName()));
 
-            Bukkit.getScheduler().scheduleSyncDelayedTask(JavaPlugin.getPlugin(Tyrant.class), () -> {
-                playerMenu.open(event.getPlayer(), Bukkit.getPlayer(event.getName()), "");
-            }, 3);
+	        Bukkit.getScheduler().scheduleSyncDelayedTask(JavaPlugin.getPlugin(Tyrant.class), () -> playerMenu.open(event.getPlayer(), Bukkit.getPlayer(event.getName()), ""), 3);
 
-            event.setWillClose(true);
-            event.setWillDestroy(true);
-        }, JavaPlugin.getPlugin(Tyrant.class));
+	        event.setWillClose(true);
+	        event.setWillDestroy(true);
+	    }, JavaPlugin.getPlugin(Tyrant.class));
 
-        this.populate(menu);
+	    this.populate(menu);
 
         menu.open(psender, null, "");
     }

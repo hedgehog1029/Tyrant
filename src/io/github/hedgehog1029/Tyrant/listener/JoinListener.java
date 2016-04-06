@@ -4,6 +4,7 @@ import io.github.hedgehog1029.Tyrant.command.Hide;
 import io.github.hedgehog1029.Tyrant.command.Moderator;
 import io.github.hedgehog1029.Tyrant.command.UpdateStory;
 import io.github.hedgehog1029.Tyrant.mod.FancyName;
+import io.github.hedgehog1029.Tyrant.mod.WelcomeMessage;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -21,6 +22,8 @@ public class JoinListener implements Listener {
         }
 
         Hide.update();
+
+        WelcomeMessage.welcome(e.getPlayer());
 
         // Generate a random coloured name using FancyName
         e.getPlayer().setDisplayName(FancyName.generateColor() + e.getPlayer().getName() + ChatColor.RESET);

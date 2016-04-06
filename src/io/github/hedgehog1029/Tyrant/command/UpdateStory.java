@@ -1,9 +1,9 @@
 package io.github.hedgehog1029.Tyrant.command;
 
-import io.github.hedgehog1029.frame.loader.Command;
-import io.github.hedgehog1029.frame.loader.HelpTopic;
-import io.github.hedgehog1029.frame.loader.Permission;
-import io.github.hedgehog1029.frame.loader.Sender;
+import io.github.hedgehog1029.frame.annotations.Command;
+import io.github.hedgehog1029.frame.annotations.HelpTopic;
+import io.github.hedgehog1029.frame.annotations.Permission;
+import io.github.hedgehog1029.frame.annotations.Sender;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
@@ -61,7 +61,7 @@ public class UpdateStory {
     }
 
     public static void sendStory(Player p) {
-        p.playSound(p.getLocation(), Sound.NOTE_PLING, 1.0F, 1.5F);
+        p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1.0F, 1.5F);
         p.sendMessage("§eUpdates: ");
         for (String line : lines) {
             p.sendMessage("§e- " + line);

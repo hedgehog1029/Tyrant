@@ -1,8 +1,8 @@
 package io.github.hedgehog1029.Tyrant.command;
 
-import io.github.hedgehog1029.frame.loader.Command;
-import io.github.hedgehog1029.frame.loader.Sender;
-import io.github.hedgehog1029.frame.loader.Text;
+import io.github.hedgehog1029.frame.annotations.Command;
+import io.github.hedgehog1029.frame.annotations.Sender;
+import io.github.hedgehog1029.frame.annotations.Text;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;

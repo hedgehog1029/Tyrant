@@ -1,10 +1,10 @@
 package io.github.hedgehog1029.Tyrant.command;
 
 import io.github.hedgehog1029.Tyrant.Tyrant;
-import io.github.hedgehog1029.frame.loader.Command;
-import io.github.hedgehog1029.frame.loader.HelpTopic;
-import io.github.hedgehog1029.frame.loader.Permission;
-import io.github.hedgehog1029.frame.loader.Sender;
+import io.github.hedgehog1029.frame.annotations.Command;
+import io.github.hedgehog1029.frame.annotations.HelpTopic;
+import io.github.hedgehog1029.frame.annotations.Permission;
+import io.github.hedgehog1029.frame.annotations.Sender;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Material;
